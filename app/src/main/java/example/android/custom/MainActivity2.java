@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
@@ -35,7 +36,6 @@ public class MainActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        final GioiThieu gioiThieu = new GioiThieu();
         textView1 = findViewById(R.id.textview1);
         textView2 = findViewById(R.id.textview2);
         textView3 = findViewById(R.id.textview3);
@@ -44,7 +44,7 @@ public class MainActivity2 extends AppCompatActivity {
         tabLayout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.view_pager);
         // youTubePlayerView=findViewById(R.id.id_youtube);
-        List<Fragment> fragmentList=getfragment();
+//        List<Fragment> fragmentList=getfragment();
         Intent intent = getIntent();
         Integer key = intent.getIntExtra("key", 0);
         String name = intent.getStringExtra("name");
@@ -57,25 +57,18 @@ public class MainActivity2 extends AppCompatActivity {
         textView2.setText(tittle);
         textView3.setText(tags);
         Picasso.with(MainActivity2.this).load(icon).into(imageView1);
-
+        GioiThieu gioiThieu = GioiThieu.newInstance();
+        Bundle bundle=new Bundle();
+        bundle.putSerializable("custom", getIntent().getSerializableExtra("custom"));
+        gioiThieu.setArguments(bundle);
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        viewPagerAdapter.AddFragment(GioiThieu.newInstance(), "Giới Thiệu");
+        viewPagerAdapter.AddFragment(gioiThieu, "Giới Thiệu");
         viewPagerAdapter.AddFragment(TongQuan.newInstance(), "Tổng Quan");
         viewPagerAdapter.AddFragment(KiNang.newInstance(), "Kĩ Năng");
         viewPager.setAdapter(viewPagerAdapter);
         viewPagerAdapter.notifyDataSetChanged();
         tabLayout.setupWithViewPager(viewPager);
-
     }
-
-    private List<Fragment> getfragment()
-    {   List<Fragment> fragmentList=new ArrayList<>();
-        viewPagerAdapter.AddFragment(GioiThieu.newInstance(), "Giới Thiệu");
-        viewPagerAdapter.AddFragment(TongQuan.newInstance(), "Tổng Quan");
-        viewPagerAdapter.AddFragment(KiNang.newInstance(), "Kĩ Năng");
-        return  fragmentList;
-    }
-
 
 
 

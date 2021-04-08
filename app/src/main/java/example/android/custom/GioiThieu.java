@@ -32,12 +32,10 @@ public class GioiThieu extends Fragment /*implements YouTubePlayer.OnInitialized
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        TextView tv4=(view).findViewById(R.id.textview4);
         view = inflater.inflate(R.layout.fragment_gioi_thieu, container, false);
-        Custom custom=(Custom)getArguments().getSerializable("custom");
+        TextView tv4=(view).findViewById(R.id.textview4);
+        Custom custom= (Custom)getArguments().getSerializable("custom");
         tv4.setText(custom.getDescription());
-      /*  youTubePlayerView.initialize(MainActivity.API_Key,this);
-        youTubePlayerView.setBackgroundColor(0x000000);*/
         return view;
     }
 

@@ -23,7 +23,7 @@
                 android:background="#808080"
                 android:id="@+id/id_toolbar"
                 app:title="Champion"
-                ></androidx.appcompat.widget.Toolbar>
+                />
 
                 
             <GridView
@@ -34,7 +34,7 @@
                 android:verticalSpacing="5dp"
                 android:stretchMode="columnWidth"
                 android:layout_gravity=""
-                ></GridView>
+                />
         </LinearLayout>
 
 

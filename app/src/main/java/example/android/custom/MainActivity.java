@@ -105,29 +105,14 @@ public class MainActivity extends AppCompatActivity   {
                 i.putExtra("name", array.get(position).getName());
                 i.putExtra("tittle", array.get(position).getTittle());
                 i.putExtra("tags",array.get(position).getTags());
+                String description=array.get(position).getDescription();
+                Custom custom=new Custom(description);
+                i.putExtra("custom", custom);
                 startActivity(i);
             }
         });
 
 
-    gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                String description=array.get(position).getDescription();
-                Custom custom=new Custom(description);
-                GioiThieu gioiThieu=(GioiThieu)getSupportFragmentManager().findFragmentById(R.id.fragment_gioi_thieu);
-                List<Fragment>fragmentList=new ArrayList<>();
-                fragmentList.add(gioiThieu);
-                Bundle bundle=new Bundle();
-                bundle.putSerializable("custom",custom);
-                gioiThieu.setArguments(bundle);
-                 FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container_view,gioiThieu);
-                 fragmentTransaction.commit();
-
-        }
-    });
 
 
      //   swipeRefreshLayout.setOnRefreshListener(this);
